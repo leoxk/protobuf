@@ -10,6 +10,29 @@ This software implements Go bindings for protocol buffers.  For
 information about protocol buffers themselves, see
 	https://developers.google.com/protocol-buffers/
 
+## Why fork from original repo ##
+This fork add an extra SetEnumFromString function for every enum type.
+This function is used by https://github.com/leoxk/xlsxpb to support parse enum from string
+proto file define enum like this
+```
+enum TableType {
+    Normal = 1;
+    Fast = 2;
+}
+
+```
+will generate function like this
+```
+// this func is generate by github.com/leoxk/protobuf/protoc-gen-go
+func (x *TableType) SetEnumFromString(str string) error {
+	if v, ok := TableType_value[str]; ok {
+		*x = TableType(v)
+		return nil
+	}
+	return fmt.Errorf("invalid enum string %s", str)
+}
+```
+
 ## Installation ##
 
 To use this software, you must:
@@ -22,7 +45,7 @@ To use this software, you must:
   for details or, if you are using gccgo, follow the instructions at
 	https://golang.org/doc/install/gccgo
 - Grab the code from the repository and install the proto package.
-  The simplest way is to run `go get -u github.com/golang/protobuf/{proto,protoc-gen-go}`.
+  The simplest way is to run `go get -u github.com/golang/protobuf/proto github.com/leoxk/protobuf/protoc-gen-go}`.
   The compiler plugin, protoc-gen-go, will be installed in $GOBIN,
   defaulting to $GOPATH/bin.  It must be in your $PATH for the protocol
   compiler, protoc, to find it.
