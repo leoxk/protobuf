@@ -10,7 +10,7 @@ This software implements Go bindings for protocol buffers.  For
 information about protocol buffers themselves, see
 	https://developers.google.com/protocol-buffers/
 
-## Why fork from original repo ##
+## Differences with the original repo ##
 
 This fork add an extra SetEnumFromString function for every enum type.
 
