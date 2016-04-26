@@ -26,6 +26,10 @@ enum TableType {
 ```
 will generate function like this
 ```
+var TableType_value = map[string]int32{
+	"Normal": 1,
+	"Fast":   2,
+}
 // this func is generate by github.com/leoxk/protobuf/protoc-gen-go
 func (x *TableType) SetEnumFromString(str string) error {
 	if v, ok := TableType_value[str]; ok {
