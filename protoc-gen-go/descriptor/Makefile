@@ -35,5 +35,5 @@ regenerate:
 	echo WARNING! THIS RULE IS PROBABLY NOT RIGHT FOR YOUR INSTALLATION
 	protoc --go_out=. -I$(HOME)/src/protobuf/src $(HOME)/src/protobuf/src/google/protobuf/descriptor.proto && \
 		sed 's,^package google_protobuf,package descriptor,' google/protobuf/descriptor.pb.go > \
-		$(GOPATH)/src/github.com/golang/protobuf/protoc-gen-go/descriptor/descriptor.pb.go && \
+		$(GOPATH)/src/github.com/leoxk/protobuf/protoc-gen-go/descriptor/descriptor.pb.go && \
 		rm -f google/protobuf/descriptor.pb.go

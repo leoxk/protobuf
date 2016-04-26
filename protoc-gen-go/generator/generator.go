@@ -54,8 +54,8 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	"github.com/golang/protobuf/protoc-gen-go/descriptor"
-	plugin "github.com/golang/protobuf/protoc-gen-go/plugin"
+	"github.com/leoxk/protobuf/protoc-gen-go/descriptor"
+	plugin "github.com/leoxk/protobuf/protoc-gen-go/plugin"
 )
 
 // generatedCodeVersion indicates a version of the generated code.
@@ -1435,6 +1435,21 @@ func (g *Generator) generateEnum(enum *EnumDescriptor) {
 		g.P("p := new(", ccTypeName, ")")
 		g.P("*p = x")
 		g.P("return p")
+		g.Out()
+		g.P("}")
+	}
+
+	if !enum.proto3() {
+		g.P("// this func is generate by github.com/leoxk/protobuf/protoc-gen-go")
+		g.P("func (x *", ccTypeName, ") SetEnumFromString(str string) error{")
+		g.In()
+		g.P("if v, ok := ", ccTypeName, "_value[str]; ok {")
+		g.In()
+		g.P("*x = ", ccTypeName, "(v)")
+		g.P("return nil")
+		g.Out()
+		g.P("}")
+		g.P("return fmt.Errorf(\"invalid enum string %s\", str)")
 		g.Out()
 		g.P("}")
 	}
