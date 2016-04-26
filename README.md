@@ -11,8 +11,11 @@ information about protocol buffers themselves, see
 	https://developers.google.com/protocol-buffers/
 
 ## Why fork from original repo ##
+
 This fork add an extra SetEnumFromString function for every enum type.
-This function is used by https://github.com/leoxk/xlsxpb to support parse enum from string
+
+This function is used by https://github.com/leoxk/xlsxpb to support parse enum from string.
+
 proto file define enum like this
 ```
 enum TableType {
