@@ -17,15 +17,15 @@ This fork add an extra SetEnumFromString function for every enum type.
 This function is used by https://github.com/leoxk/xlsxpb to support parse enum from string.
 
 proto file define enum like this
-```
+```proto
 enum TableType {
     Normal = 1;
     Fast = 2;
 }
+```
 
-```
 will generate function like this
-```
+```go
 var TableType_value = map[string]int32{
 	"Normal": 1,
 	"Fast":   2,
